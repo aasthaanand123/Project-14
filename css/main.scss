@@ -288,6 +288,12 @@ body::-webkit-scrollbar-thumb {
   ul.mobile__menu {
     display: none;
   }
+  .cross__li {
+    display: none;
+  }
+  div.overlay {
+    display: none;
+  }
   // background-image change
   body::before {
     background: url("/images/image-hero-desktop.jpg") no-repeat;
