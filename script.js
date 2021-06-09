@@ -70,9 +70,27 @@ successbtn.addEventListener("click", function () {
   success.classList.add("hidden");
   success.classList.remove("flex");
 });
+let remove_class = function () {
+  complete.forEach((c) => {
+    if (c.classList.contains("flex_selection")) {
+      c.classList.remove("flex_selection");
+    }
+    if (!c.classList.contains("hidden")) {
+      c.classList.add("hidden");
+    }
+  });
+  check.forEach((el) => {
+    el.parentElement.parentElement.parentElement.parentElement.style.borderColor =
+      "#e4e4e4";
+  });
+};
 cross_selection.addEventListener("click", function () {
   modalselect.classList.add("hidden");
   overlay.classList.add("hidden");
+  remove_class();
+  check.forEach((c) => {
+    c.checked = false;
+  });
 });
 back.addEventListener("click", function () {
   modalselect.classList.remove("hidden");
@@ -81,12 +99,7 @@ back.addEventListener("click", function () {
 cont.forEach((c) => {
   c.addEventListener("click", function () {
     overlay.classList.remove("hidden");
-    selection_article.forEach((selection) => {
-      selection.style.borderColor = "#e4e4e4";
-    });
-    complete.forEach((c) => {
-      c.classList.add("none_selection");
-    });
+    remove_class();
     check.forEach((d) => {
       if (d.checked) {
         let text = collected.innerText.replace(",", "");
@@ -117,7 +130,6 @@ cont.forEach((c) => {
         backers.innerText = num_two;
         progress_bar.setAttribute("value", String(val_three));
       }
-
       d.checked = false;
     });
     number_input.forEach((n) => {
@@ -127,9 +139,10 @@ cont.forEach((c) => {
 });
 check.forEach((c) => {
   c.addEventListener("input", function () {
+    remove_class();
     if (this.checked) {
       let parent = c.parentElement.parentElement.parentElement.parentElement;
-      parent.children[1].classList.remove("none_selection");
+      parent.children[1].classList.remove("hidden");
       parent.nextElementSibling.children[0].classList.add("flex_selection");
       parent.style.borderColor = "hsl(176, 50%, 47%)";
     }

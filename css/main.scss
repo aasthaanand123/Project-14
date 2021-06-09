@@ -260,6 +260,7 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 .complete {
+  @include flexbox(column);
   .onclick {
     position: relative;
     &::before {
@@ -291,9 +292,10 @@ body::-webkit-scrollbar-thumb {
   .cross__li {
     display: none;
   }
-  div.overlay {
-    display: none;
-  }
+  // div.overlay {
+  //   display: none;
+  // }
+  //fix problem of overlay on size increase
   // background-image change
   body::before {
     background: url("/images/image-hero-desktop.jpg") no-repeat;
@@ -460,7 +462,6 @@ body::-webkit-scrollbar-thumb {
     display: flex;
   }
 }
-
 @media (min-width: 1090px) {
   body::before {
     background-size: cover;
@@ -632,7 +633,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: flex-start;
 }
 .complete {
-  @include flexbox(column);
+  // @include flexbox(column);
   .onclick {
     position: relative;
     @include flexbox(row, space-between, center);
@@ -713,8 +714,4 @@ input:checked + .radio_one .radio_two {
 }
 article input:checked {
   border: 1px solid $Moderate-cyan;
-}
-
-.none_selection {
-  display: none;
 }
